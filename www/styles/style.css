@@ -1,0 +1,53 @@
+body{
+  background-color: burlywood;
+
+}
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin: 0;
+  width: 100%;
+}
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin: 0;
+  width: 100%
+}
+h1{
+  color: #428f42;
+}
+#vamos{
+background-color: #428f42;
+color: white;
+}
+#caja{
+  background-color: #cca776;
+  box-shadow: 0px 10px 5px 0px #7e6443;;
+  border-radius: 16px;
+  width: 80%;
+}
+#pie{
+  /*background-color: #cca776;*/
+  background-color: #cca776;
+  box-shadow: 0px 10px 5px 0px #7e6443;;
+  border-radius: 8px;
+  width: 100%;
+  position:fixed; bottom:0;
+  text-align: center;
+  color: whitesmoke;
+  padding: 16px;
+}
+.amponH:hover{
+  transform: scale(1.5);
+  transition-duration: 600ms;
+}
+.amponH{
+  transition-duration: 400ms;
+}
+a{
+  text-decoration: none;
+  color: whitesmoke;
+}
