@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styleindex.css">
+    <title>Crear Ruta</title>
+</head>
+<body>
+    <header>
+        <img class="d-block mx-auto mb-4" src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="" width="72" height="72">
+        <h1 class="display-5 fw-bold ">Wonder Wander Valencia</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="verRutas.php">BUSCA TU RUTA</a></li>
+            <li><a href="#">INGRESA TU RUTA</a></li>
+            <li>CONOCENOS</li>
+        </ul>
+    </nav>
+    
+    <form id="addForm">
+        <label for="nom">Nombre</label>
+        <br>
+        <input type="text" id="nom">
+        <br>
+        <label for="dist">Distancia</label>
+        <br>
+        <input type="range" value="21"  min="1" max="42" oninput="
+        if (this.value==1) {
+            this.nextElementSibling.value = this.value+' Km o menos'
+        } else {
+            if (this.value==42) {
+                this.nextElementSibling.value = this.value+' Km o más'
+        
+            } else {
+                this.nextElementSibling.value = this.value+' Km'
+            }
+        }
+        " id="barra">
+        <output>Distancia (KM)</output>
+        <br>
+        <label for="imageUpload" class="btn">Imagen</label><br>
+        <input draggable="true" type="file" id="imageUpload" accept="image/*" multiple>
+        <br><br>
+        <img id="imagePreview" src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="Previsualización" style="max-width: 300px; max-height: 300px;"> 
+        <br>
+        <ul>
+            <li>
+                <label for="caminando">Caminando</label>
+                <input type="checkbox" id="caminando"><br>
+            </li>
+            <li>
+                <label for="caminando">En bici</label>
+                <input type="checkbox" id="bici"><br>
+            </li>
+
+            <li>
+                <label for="caminando">Recomendado con mascota</label>
+                <input type="checkbox" id="sillaRuedas"><br>
+            </li>
+            <li>
+                <label for="caminando">Accesible silla de rueda</label>
+                <input type="checkbox" id="sillaRuedas"><br>
+            </li>
+        </ul>
+    </form>
+    <script src="Scripts/preview_Img.js"></script>
+
+    <br>
+</body>
+</html>
