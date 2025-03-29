@@ -20,14 +20,14 @@
         </ul>
     </nav>
     
-    <form id="addForm">
+    <form id="addForm" action="actionPage.php" method="post" enctype="multipart/form-data">
         <label for="nom">Nombre</label>
         <br>
-        <input type="text" id="nom">
+        <input type="text" id="nom" name="nom">
         <br>
         <label for="dist">Distancia</label>
         <br>
-        <input type="range" value="21"  min="1" max="42" oninput="
+        <input type="range" name="dist" value="21"  min="1" max="42" oninput="
         if (this.value==1) {
             this.nextElementSibling.value = this.value+' Km o menos'
         } else {
@@ -42,31 +42,49 @@
         <output>Distancia (KM)</output>
         <br>
         <label for="imageUpload" class="btn">Imagen</label><br>
-        <input draggable="true" type="file" id="imageUpload" accept="image/*" multiple>
+        <!-- <input type="file" id="imageUpload" name="imageUpload" accept="image/*"> -->
+        <input draggable="true" type="file" id="imageUpload" name="imageUpload" accept="image/*">
+
         <br><br>
         <img id="imagePreview" src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="Previsualización" style="max-width: 300px; max-height: 300px;"> 
         <br>
         <ul>
             <li>
                 <label for="caminando">Caminando</label>
-                <input type="checkbox" id="caminando"><br>
+                <input name="caminando" type="checkbox" id="caminando"><br>
             </li>
             <li>
-                <label for="caminando">En bici</label>
-                <input type="checkbox" id="bici"><br>
+                <label for="bici">En bici</label>
+                <input name="bici" type="checkbox" id="bici"><br>
             </li>
 
             <li>
-                <label for="caminando">Recomendado con mascota</label>
-                <input type="checkbox" id="sillaRuedas"><br>
+                <label for="mascota">Recomendado con mascota</label>
+                <input name="mascota" type="checkbox" id="mascota"><br>
             </li>
             <li>
-                <label for="caminando">Accesible silla de rueda</label>
-                <input type="checkbox" id="sillaRuedas"><br>
+                <label for="sillaRuedas">Accesible silla de rueda</label>
+                <input name="sillaRuedas" type="checkbox" id="sillaRuedas"><br>
             </li>
         </ul>
+        <button type="submit" form="addForm" value="Submit">Enviar</button> 
     </form>
     <script src="Scripts/preview_Img.js"></script>
+    <script>
+        function upload (file) {
+  var form = new FormData(),
+      xhr = new XMLHttpRequest();
+
+  form.append('image', file);
+  xhr.open('post', 'upload.php', true);
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+    }
+  }
+  xhr.send(form);
+}
+    </script>
 
     <br>
 </body>

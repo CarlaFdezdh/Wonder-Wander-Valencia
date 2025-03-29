@@ -80,7 +80,6 @@ main{
     width: 100%;
     flex-direction: column;
     padding-top: 160px;
-
 }
 section {
     padding: 40px;
@@ -138,9 +137,9 @@ footer a:hover {
 }
 
 
-  h1{
-    color: white;
-  }
+h1{
+  color: white;
+}
 
   #pie{
     background-color: var(--color-primario);
