@@ -80,6 +80,7 @@ main{
     width: 100%;
     flex-direction: column;
     padding-top: 160px;
+
 }
 section {
     padding: 40px;
@@ -137,9 +138,9 @@ footer a:hover {
 }
 
 
-h1{
-  color: white;
-}
+  h1{
+    color: white;
+  }
 
   #pie{
     background-color: var(--color-primario);
@@ -174,9 +175,6 @@ h1{
     height: 10%;
 
   }
-  form{
-    padding-top: 300px;
-  }
   ul{
     list-style: none;
     display: flex;
@@ -188,7 +186,33 @@ h1{
   #barra{
     background-color: var(--color-primario);
   }
- 
+  #form{
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+    width: 60%;
+  }
+  label{
+    margin-top: 10px;
+    display: block;
+    color: var(--color-texto);
+  }
+  input {
+    padding: 10px;
+  }
+  button{
+    margin-top: 10px;
+  }
+  textarea{
+    resize: none;
+    box-sizing: border-box;
+  }
+  
+  
 
   
   
