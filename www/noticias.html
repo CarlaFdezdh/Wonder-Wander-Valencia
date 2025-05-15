@@ -1,0 +1,64 @@
+<!-- noticia.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticia</title>
+    <link rel="stylesheet" href="styles/styleindex.css">
+</head>
+
+<body>
+    <header>
+        <h1>Noticia completa</h1>
+    </header>
+
+    <nav id="noti">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="verRutas.php">BUSCA TU RUTA</a></li>
+            <li><a href="addRuta.html">INGRESA TU RUTA</a></li>
+            <li><a href="conocenos.html">CONOCENOS</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <article>
+                <h2 id="titulo"></h2>
+                <div id="contenido"></div>
+                <button id="eliminarBtn" style="background: crimson;">Eliminar publicación</button>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div id="pie">&copy; Wonder Wander Valencia</div>
+    </footer>
+
+    <script>
+        const id = new URLSearchParams(window.location.search).get("id");
+        const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+        const post = posts.find(p => p.id === Number(id));
+
+        if (post) {
+            document.getElementById("titulo").textContent = post.title;
+            document.getElementById("contenido").innerHTML = post.content;
+
+            document.getElementById("eliminarBtn").addEventListener("click", () => {
+                if (confirm("¿Estás seguro de que quieres eliminar esta publicación?")) {
+                    const actualizados = posts.filter(p => p.id !== Number(id));
+                    localStorage.setItem("posts", JSON.stringify(actualizados));
+                    alert("Publicación eliminada.");
+                    window.location.href = "index.html";
+                }
+            });
+        } else {
+            document.getElementById("contenido").innerHTML = "<p>Publicación no encontrada.</p>";
+            document.getElementById("eliminarBtn").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!-- publis.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Publicación</title>
+    <link rel="stylesheet" href="styles/styleindex.css">
+</head>
+
+<body>
+    <header>
+        <h1>Empieza creando</h1>
+    </header>
+
+
+    <main>
+        <section>
+            <form id="postForm" id="form">
+                <input type="text" id="title" placeholder="Título de la publicación" required>
+                <div class="editor-toolbar">
+                    <button type="button" onclick="formatText('bold')"><b>Negrita</b></button>
+                    <button type="button" onclick="formatText('italic')"><i>Cursiva</i></button>
+                    <button type="button" onclick="formatText('insertUnorderedList')">• Lista</button>
+                    <button type="button" onclick="formatText('insertOrderedList')">1. Lista</button>
+                    <button type="button" onclick="formatText('increaseFont')">A+</button>
+                    <button type="button" onclick="formatText('decreaseFont')">A-</button>
+                    <button type="button" onclick="document.getElementById('imgInput').click()">📷 Imagen</button>
+                    <input type="file" id="imgInput" accept="image/*" multiple style="display:none">
+                </div>
+                <div class="editor" id="editor" contenteditable="true" placeholder="Escribe tu contenido aquí..."></div>
+                <button type="submit">Publicar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div id="pie">&copy; Wonder Wander Valencia</div>
+    </footer>
+
+    <script>
+        function formatText(command) {
+            if (command === 'increaseFont') {
+                document.execCommand('fontSize', false, '4');
+            } else if (command === 'decreaseFont') {
+                document.execCommand('fontSize', false, '2');
+            } else {
+                document.execCommand(command, false, null);
+            }
+        }
+
+        const editor = document.getElementById('editor');
+        const imgInput = document.getElementById('imgInput');
+
+        imgInput.addEventListener('change', function () {
+            const files = this.files;
+            for (let file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    insertImageAtCursor(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+            this.value = '';
+        });
+
+        function insertImageAtCursor(src) {
+            const img = document.createElement('img');
+            img.src = src;
+            img.title = "Haz clic derecho para eliminar";
+            img.style.width = '300px';
+            img.style.height = '400px';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '10px';
+            img.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+                if (confirm("¿Eliminar esta imagen?")) {
+                    this.remove();
+                }
+            });
+            const selection = window.getSelection();
+            if (!selection.rangeCount) return;
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(img);
+            range.setStartAfter(img);
+            range.setEndAfter(img);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            const br = document.createElement('br');
+            range.insertNode(br);
+        }
+
+        document.getElementById('postForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const content = editor.innerHTML;
+            const id = Date.now();
+
+            const post = {
+                id,
+                title,
+                content,
+                date: new Date().toLocaleString()
+            };
+
+            const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+            posts.unshift(post);
+            localStorage.setItem("posts", JSON.stringify(posts));
+
+            alert("Publicación guardada correctamente");
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+
+</html>
