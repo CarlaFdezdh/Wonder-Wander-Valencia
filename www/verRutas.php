@@ -17,20 +17,64 @@ $result = $stmt->execute();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ver Rutas</title>
-  <link rel="stylesheet" href="style.css">
+  <!--<link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styleaddRuta.css">-->
   <link rel="stylesheet" href="styles/styleindex.css">
-  <link rel="stylesheet" href="styles/styleaddRuta.css">
+
 </head>
 <body>
-  <h1>Wonder Wander Valencia</h1>
+    <header>
+        <img src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="" width="72" height="72">
+        <h1>Wonder Wander Valencia</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="#">BUSCA TU RUTA</a></li>
+            <li><a href="addRuta.html">INGRESA TU RUTA</a></li>
+            <li><a href="conocenos.html">CONOCENOS</a></li>
+        </ul>
+    </nav>
 
   <form action="verRutas.php" method="post" id="queryform">
     <input type="text" id="queryN" name="queryN" placeholder="Buscar rutas..." value="<?= htmlspecialchars($miquery) ?>">
     <input type="submit" value="Buscar">
   </form>
+  <main id="vr">
+  <?php while ($row = $result->fetchArray(SQLITE3_ASSOC)): ?>
+    <div class="card">
+      <h2><?= htmlspecialchars($row['nombre']) ?></h2>
+      <div class="card-body">
+        <div>
+        <p><strong>Distancia:</strong> <?= htmlspecialchars($row['distancia']) ?> km</p>
+        <p><strong>Recomendado:</strong></p>
+          <?php if ($row['caminando']==1): ?>
+            <p>Caminando,
+          <?php endif; ?>
+          <?php if ($row['bici']==1): ?>
+            En bici,
+          <?php endif; ?>
+          <?php if ($row['mascota']==1): ?>
+            Con mascota,
+          <?php endif; ?>
+          <?php if ($row['silla']==1): ?>
+            En silla de ruedas,
+          <?php endif; ?>
+        </p>
+  </div>
+            <?php foreach ($row as $key => $item): ?>
+            <?php if ($key === 'imagen'): ?>
+            <img src="imgSubidas/<?= htmlspecialchars($item) ?>" alt="Imagen de la ruta" height="200" width="200">
+            </div>
+      </div>
 
-  <table class="table table-bordered">
+            <?php endif; ?>
+          <?php endforeach; ?>
+      <?php endwhile; ?>
+  </main>
+  <!--<table class="table table-bordered">
     <thead>
       <tr>
         <th>ID</th>
@@ -44,7 +88,7 @@ $result = $stmt->execute();
       </tr>
     </thead>
     <tbody>
-      <?php while ($row = $result->fetchArray(SQLITE3_ASSOC)): ?>
+    <?php/* while ($row = $result->fetchArray(SQLITE3_ASSOC)): ?>
         <tr>
           <?php foreach ($row as $key => $item): ?>
             <?php if ($key === 'imagen'): ?>
@@ -54,7 +98,7 @@ $result = $stmt->execute();
             <?php endif; ?>
           <?php endforeach; ?>
         </tr>
-      <?php endwhile; ?>
+      <?php endwhile;*/ ?>-->
     </tbody>
   </table>
 </body>
