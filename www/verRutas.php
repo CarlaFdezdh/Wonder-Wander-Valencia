@@ -7,7 +7,7 @@ $conn = new SQLite3($bd, SQLITE3_OPEN_READONLY);
 
 // Usamos consulta preparada para evitar inyecciones
 $stmt = $conn->prepare("SELECT * FROM ruta WHERE nombre LIKE :nombre");
-$stmt->bindValue(':nombre', $miquery . '%', SQLITE3_TEXT);
+$stmt->bindValue(':nombre', '%' . $miquery . '%', SQLITE3_TEXT);
 $result = $stmt->execute();
 ?>
 
@@ -17,9 +17,6 @@ $result = $stmt->execute();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ver Rutas</title>
-  <!--<link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles/styleaddRuta.css">-->
   <link rel="stylesheet" href="styles/styleindex.css">
 
 </head>
@@ -50,23 +47,26 @@ $result = $stmt->execute();
         <div>
         <p><strong>Distancia:</strong> <?= htmlspecialchars($row['distancia']) ?> km</p>
         <p><strong>Recomendado:</strong></p>
-          <?php if ($row['caminando']==1): ?>
-            <p>Caminando,
+          <?php if ($row['caminando']==1):
+            echo "<span class='attrib'>Caminando</span>"
+            ?>
           <?php endif; ?>
-          <?php if ($row['bici']==1): ?>
-            En bici,
+          <?php if ($row['bici']==1): 
+            echo "<span class='attrib'>En bici</span>"
+            ?>
           <?php endif; ?>
-          <?php if ($row['mascota']==1): ?>
-            Con mascota,
+          <?php if ($row['mascota']==1):
+            echo "<span class='attrib'>Con mascota</span>"
+            ?>
           <?php endif; ?>
-          <?php if ($row['silla']==1): ?>
-            En silla de ruedas,
+          <?php if ($row['silla']==1):
+            echo "<span class='attrib'>En silla de ruedas</span>"
+            ?>
           <?php endif; ?>
-        </p>
-  </div>
+      </div>
             <?php foreach ($row as $key => $item): ?>
             <?php if ($key === 'imagen'): ?>
-            <img src="imgSubidas/<?= htmlspecialchars($item) ?>" alt="Imagen de la ruta" height="200" width="200">
+            <img src="imgSubidas/<?= htmlspecialchars($item) ?>" alt="Imagen de la ruta" height="300" width="450">
             </div>
       </div>
 

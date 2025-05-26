@@ -6,7 +6,9 @@ var_dump($_POST); // tenemos la variable post, con los datos que hemos enviado d
 var_dump($_FILES["imageUpload"]);
 $dirSubidas="imgSubidas/";
 $conn=new SQLite3($bd);
-$miId= $conn->exec("SELECT max(id) FROM ruta")+1;
+$miId = $conn->querySingle("SELECT max(id) FROM ruta") + 1; // Incrementamos el ID máximo
+
+
 $nomImage=$miId.".png";
 
 if(isset($_POST["caminando"])){
