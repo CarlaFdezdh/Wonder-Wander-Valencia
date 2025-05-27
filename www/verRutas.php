@@ -18,6 +18,7 @@ $result = $stmt->execute();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ver Rutas</title>
   <link rel="stylesheet" href="styles/styleindex.css">
+  <link rel="icon" href="media/imgs/mountains-mountain-svgrepo-com.svg" type="image/svg+xml">
 
 </head>
 <body>
@@ -45,7 +46,7 @@ $result = $stmt->execute();
       <h2><?= htmlspecialchars($row['nombre']) ?></h2>
       <div class="card-body">
         <div>
-        <p><strong>Distancia:</strong> <?= htmlspecialchars($row['distancia']) ?> km</p>
+        <p><strong>Distancia:</strong> <span class="attrib"> <?= htmlspecialchars($row['distancia']) ?> km</span></p>
         <p><strong>Recomendado:</strong></p>
           <?php if ($row['caminando']==1):
             echo "<span class='attrib'>Caminando</span>"
@@ -60,18 +61,21 @@ $result = $stmt->execute();
             ?>
           <?php endif; ?>
           <?php if ($row['silla']==1):
-            echo "<span class='attrib'>En silla de ruedas</span>"
+            echo "<br><span class='attrib'>En silla de ruedas</span>"
             ?>
           <?php endif; ?>
-      </div>
+          </div>
             <?php foreach ($row as $key => $item): ?>
             <?php if ($key === 'imagen'): ?>
-            <img src="imgSubidas/<?= htmlspecialchars($item) ?>" alt="Imagen de la ruta" height="300" width="450">
-            </div>
-      </div>
-
+            <img src="imgSubidas/<?= htmlspecialchars($item) ?>" alt="Imagen de la ruta" height="220" width="330">
+            <?php endif; ?>
+            <?php if ($key === 'mapa'): ?>
+            <!-- esto es un placeholder-->
+            <?php echo "<iframe frameBorder='0' scrolling='no' src='".$row['mapa']."' width='500' height='400'></iframe>" ?>
             <?php endif; ?>
           <?php endforeach; ?>
+      </div>
+    </div>
       <?php endwhile; ?>
   </main>
   <!--<table class="table table-bordered">

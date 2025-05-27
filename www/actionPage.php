@@ -38,7 +38,7 @@ move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $dirSubidas.$nomImage);
 $conn=new SQLite3($bd);
 //metemos los datos a la base de datos de la siguiente forma:
 $sql='INSERT INTO ruta
-VALUES('.$miId.' ,'.'"'.$_POST['nom'].'"'.' ,'.$_POST['dist'].' ,'.$c1.' ,'.$c2.' ,'.$c3.' ,'.$c4.' ,'.'"'.$nomImage.'"'.')';
+VALUES('.$miId.' ,'.'"'.$_POST['nom'].'"'.' ,'.$_POST['dist'].' ,'.$c1.' ,'.$c2.' ,'.$c3.' ,'.$c4.' ,'.'"'.$nomImage.'"'.','.'"'.$_POST['mapa'].'"'.')';
 echo $sql;
 $conn->exec($sql);
 $conn->close();
