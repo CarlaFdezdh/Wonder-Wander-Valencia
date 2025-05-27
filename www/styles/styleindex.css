@@ -153,6 +153,20 @@ h1 {
     color: white;
 }
 
+iframe{
+    border-radius: 8px;
+}
+#distanciasf{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+input#queryN{
+    width: 60%;
+}
 #pie {
     background-color: var(--color-primario);
     box-shadow: 0px 10px 5px 0px #7e6443;
@@ -174,7 +188,12 @@ h1 {
     transition-duration: 400ms;
 }
 
-
+input#maxkm, input#minkm{
+    width: 6rem;
+    text-align: center;
+    align-items: center;
+    vertical-align:middle;
+}
 .card {
     transition-duration: 300ms;
     text-align: center;
@@ -199,7 +218,7 @@ h1 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 30px;}
+    gap: 2rem;}
 .card:hover {
     transition-duration: 300ms;
     transform: translateY(-5px);

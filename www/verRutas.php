@@ -1,13 +1,26 @@
 <?php
 $miquery = $_POST["queryN"] ?? '';
-
+if ($_POST["maxkm"]==''){
+  $miquery2 = 256;
+}else{
+  $miquery2 = $_POST["maxkm"] ?? 256;
+}
+if ($_POST["minkm"]== ''){
+  $miquery3 = 0;
+}else{
+  $miquery3 = $_POST["minkm"] ?? 0;
+}
 // Conexión a la base de datos
 $bd = "rutas.db";
 $conn = new SQLite3($bd, SQLITE3_OPEN_READONLY);
 
 // Usamos consulta preparada para evitar inyecciones
-$stmt = $conn->prepare("SELECT * FROM ruta WHERE nombre LIKE :nombre");
-$stmt->bindValue(':nombre', '%' . $miquery . '%', SQLITE3_TEXT);
+
+  $stmt = $conn->prepare("SELECT * FROM ruta WHERE nombre LIKE :nombre AND distancia < :distmax and distancia > :distmin");
+  $stmt->bindValue(':nombre', '%' . $miquery . '%', SQLITE3_TEXT);
+  $stmt->bindValue(':distmax', $miquery2, SQLITE3_INTEGER);
+  $stmt->bindValue(':distmin', $miquery3, SQLITE3_INTEGER);
+
 $result = $stmt->execute();
 ?>
 
@@ -19,14 +32,12 @@ $result = $stmt->execute();
   <title>Ver Rutas</title>
   <link rel="stylesheet" href="styles/styleindex.css">
   <link rel="icon" href="media/imgs/mountains-mountain-svgrepo-com.svg" type="image/svg+xml">
-
 </head>
 <body>
     <header>
         <img src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="" width="72" height="72">
         <h1>Wonder Wander Valencia</h1>
     </header>
-
     <nav>
         <ul>
             <li><a href="index.html">HOME</a></li>
@@ -35,9 +46,18 @@ $result = $stmt->execute();
             <li><a href="conocenos.html">CONOCENOS</a></li>
         </ul>
     </nav>
-
   <form action="verRutas.php" method="post" id="queryform">
+    <div id="distanciasf">
     <input type="text" id="queryN" name="queryN" placeholder="Buscar rutas..." value="<?= htmlspecialchars($miquery) ?>">
+    <div>
+    <!--<label for="minkm" >Min (Km)</label>-->
+    <input type="number" id="minkm" name="minkm" placeholder="Min km" min="0">
+    </div>
+    <div>
+    <!--<label for="maxkm" >Max (Km)</label>-->
+    <input type="number" id="maxkm" name="maxkm" placeholder="Max km" min="0">
+    </div>
+    </div>
     <input type="submit" value="Buscar">
   </form>
   <main id="vr">
@@ -78,31 +98,6 @@ $result = $stmt->execute();
     </div>
       <?php endwhile; ?>
   </main>
-  <!--<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Distancia (KM)</th>
-        <th>Caminando</th>
-        <th>Bici</th>
-        <th>Con mascota</th>
-        <th>Con silla de ruedas</th>
-        <th>Imagen</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php/* while ($row = $result->fetchArray(SQLITE3_ASSOC)): ?>
-        <tr>
-          <?php foreach ($row as $key => $item): ?>
-            <?php if ($key === 'imagen'): ?>
-              <td><img src="imgSubidas/<?= htmlspecialchars($item) ?>" alt="Imagen de la ruta" height="200" width="200"></td>
-            <?php else: ?>
-              <td><?= htmlspecialchars($item) ?></td>
-            <?php endif; ?>
-          <?php endforeach; ?>
-        </tr>
-      <?php endwhile;*/ ?>-->
     </tbody>
   </table>
 </body>
