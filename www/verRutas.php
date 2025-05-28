@@ -10,6 +10,7 @@ if ($_POST["minkm"]== ''){
 }else{
   $miquery3 = $_POST["minkm"] ?? 0;
 }
+
 $bd = "rutas.db";
 $conn = new SQLite3($bd, SQLITE3_OPEN_READONLY);
 
@@ -27,7 +28,7 @@ $result = $stmt->execute();
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
