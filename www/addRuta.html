@@ -15,63 +15,63 @@
     <nav>
         <ul>
             <li><a href="index.html">HOME</a></li>
-            <li><a href="verRutas.php">BUSCA TU RUTA</a></li>
-            <li><a href="addRuta.html">INGRESA TU RUTA</a></li>
-            <li><a href="conocenos.html">CONTÁCTANOS</a></li>
+            <li><a href="verRutas.php">FIND YOUR TRAIL</a></li>
+            <li><a href="#">UPLOAD YOUR TRAIL</a></li>
+            <li><a href="conocenos.html">CONTACT US</a></li>
         </ul>
     </nav>
     
     <form id="addForm" action="actionPage.php" method="post" enctype="multipart/form-data">
-        <label for="nom">Nombre</label>
+        <label for="nom">Name</label>
         <br>
         <input type="text" id="nom" name="nom">
         <br>
-        <label for="dist">Distancia</label>
+        <label for="dist">Distance</label>
         <br>
         <input type="range" name="dist" value="21"  min="1" max="42" oninput="
         if (this.value==1) {
-            this.nextElementSibling.value = this.value+' Km o menos'
+            this.nextElementSibling.value = this.value+' Km or less'
         } else {
             if (this.value==42) {
-                this.nextElementSibling.value = this.value+' Km o más'
+                this.nextElementSibling.value = this.value+' Km or nore'
         
             } else {
                 this.nextElementSibling.value = this.value+' Km'
             }
         }
         " id="barra">
-        <output>Distancia (KM)</output>
+        <output>Distance (KM)</output>
         <br>
-        <label for="imageUpload" class="btn">Imagen</label><br>
+        <label for="imageUpload" class="btn">Picture</label><br>
         <!-- <input type="file" id="imageUpload" name="imageUpload" accept="image/*"> -->
         <input draggable="true" type="file" id="imageUpload" name="imageUpload" accept="image/*">
 
         <br><br>
-        <img id="imagePreview" src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="Previsualización" style="max-width: 300px; max-height: 300px;"> 
+        <img id="imagePreview" src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="Previsualizable" style="max-width: 300px; max-height: 300px;"> 
         <br>
         <ul>
             <li>
-                <label for="caminando">Caminando</label>
+                <label for="caminando">Walking</label>
                 <input name="caminando" type="checkbox" id="caminando"><br>
             </li>
             <li>
-                <label for="bici">En bici</label>
+                <label for="bici">By bike</label>
                 <input name="bici" type="checkbox" id="bici"><br>
             </li>
 
             <li>
-                <label for="mascota">Recomendado con mascota</label>
+                <label for="mascota">Recommended with pets</label>
                 <input name="mascota" type="checkbox" id="mascota"><br>
             </li>
             <li>
-                <label for="sillaRuedas">Accesible silla de rueda</label>
+                <label for="sillaRuedas">Wheelchair accessible</label>
                 <input name="sillaRuedas" type="checkbox" id="sillaRuedas"><br>
             </li>
         </ul>
         <br>
-        <label for="mapa">Url de la ruta</label>
+        <label for="mapa">Url of the trail</label>
         <input type="text" id="mapa" name="mapa" placeholder="https://www.wikiloc.com/wikiloc/embedv2...">
-        <button type="submit" form="addForm" value="Submit">Enviar</button> 
+        <button type="submit" form="addForm" value="Submit">Upload</button> 
     </form>
     <script src="Scripts/preview_Img.js"></script>
     <script>

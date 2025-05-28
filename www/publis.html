@@ -20,17 +20,17 @@
             <form id="postForm" id="form">
                 <input type="text" id="title" placeholder="Título de la publicación" required>
                 <div class="editor-toolbar">
-                    <button type="button" onclick="formatText('bold')"><b>Negrita</b></button>
-                    <button type="button" onclick="formatText('italic')"><i>Cursiva</i></button>
-                    <button type="button" onclick="formatText('insertUnorderedList')">• Lista</button>
-                    <button type="button" onclick="formatText('insertOrderedList')">1. Lista</button>
+                    <button type="button" onclick="formatText('bold')"><b>Bold</b></button>
+                    <button type="button" onclick="formatText('italic')"><i>Italic</i></button>
+                    <button type="button" onclick="formatText('insertUnorderedList')">• List</button>
+                    <button type="button" onclick="formatText('insertOrderedList')">1. List</button>
                     <button type="button" onclick="formatText('increaseFont')">A+</button>
                     <button type="button" onclick="formatText('decreaseFont')">A-</button>
-                    <button type="button" onclick="document.getElementById('imgInput').click()">📷 Imagen</button>
+                    <button type="button" onclick="document.getElementById('imgInput').click()">📷 Picture</button>
                     <input type="file" id="imgInput" accept="image/*" multiple style="display:none">
                 </div>
                 <div class="editor" id="editor" contenteditable="true" placeholder="Escribe tu contenido aquí..."></div>
-                <button type="submit">Publicar</button>
+                <button type="submit">Publish</button>
             </form>
         </section>
     </main>
