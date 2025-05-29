@@ -6,19 +6,19 @@
     <meta charset="UTF-8">
     <title>Crear Publicación</title>
     <link rel="stylesheet" href="styles/styleindex.css">
-    <link rel="icon" href="media/imgs/mountains-mountain-svgrepo-com.svg" type="image/svg+xml">
+    <link rel="icon" href="media/imgs/logoWWV.png" type="image/svg+xml">
 </head>
 
 <body>
     <header>
-        <h1>Empieza creando</h1>
+        <h1>Start creating</h1>
     </header>
 
 
     <main>
         <section>
             <form id="postForm" id="form">
-                <input type="text" id="title" placeholder="Título de la publicación" required>
+                <input type="text" id="title" placeholder="Announcement title" required>
                 <div class="editor-toolbar">
                     <button type="button" onclick="formatText('bold')"><b>Bold</b></button>
                     <button type="button" onclick="formatText('italic')"><i>Italic</i></button>
@@ -69,14 +69,14 @@
         function insertImageAtCursor(src) {
             const img = document.createElement('img');
             img.src = src;
-            img.title = "Haz clic derecho para eliminar";
+            img.title = "Right click to delete";
             img.style.width = '300px';
             img.style.height = '400px';
             img.style.objectFit = 'cover';
             img.style.borderRadius = '10px';
             img.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
-                if (confirm("¿Eliminar esta imagen?")) {
+                if (confirm("Delete this image?")) {
                     this.remove();
                 }
             });
@@ -110,7 +110,7 @@
             posts.unshift(post);
             localStorage.setItem("posts", JSON.stringify(posts));
 
-            alert("Publicación guardada correctamente");
+            alert("Announcement saved");
             window.location.href = "index.html";
         });
     </script>

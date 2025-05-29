@@ -32,13 +32,13 @@ $result = $stmt->execute();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ver Rutas</title>
+  <title>Search trails</title>
   <link rel="stylesheet" href="styles/styleindex.css">
-  <link rel="icon" href="media/imgs/mountains-mountain-svgrepo-com.svg" type="image/svg+xml">
+  <link rel="icon" href="media/imgs/logoWWV.png" type="image/svg+xml">
 </head>
 <body>
     <header>
-        <img src="media/imgs/mountains-mountain-svgrepo-com.svg" alt="" width="72" height="72">
+        <img src="media/imgs/logoWWV.png" alt="" width="72" height="72">
         <h1>Wonder Wander Valencia</h1>
     </header>
     <nav>
